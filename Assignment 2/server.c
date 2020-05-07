@@ -87,7 +87,7 @@ int main(int argc, char const *argv[])
 
         // run this on bash to get nobody id 
         // $ cat /etc/passwd | grep nobody
-        int droppedPid = setuid(65534);
+        int droppeduid = setuid(65534);
 
 
         // exec will execute the file with file name and socket file descriptor
@@ -103,7 +103,6 @@ int main(int argc, char const *argv[])
     }
     else{          // parent will execute this part , id > 0
         wait(NULL);         // waits for all child process to finish 
-        printf("Parent is now terminating, as child process is done\n");
     }
 
     return 0; 
