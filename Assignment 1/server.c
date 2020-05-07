@@ -65,14 +65,14 @@ int main(int argc, char const *argv[])
         exit(EXIT_FAILURE); 
     } 
 
-    // Create a 
+    // Create a fork process
     int pid = fork();
 
     if(pid == 0){        // child will execute this part
 
         // run this on bash to get nobody id 
         // $ cat /etc/passwd | grep nobody
-        int droppedPid = setuid(65534);
+        int droppeduPid = setuid(65534);
 
         valread = read( new_socket , buffer, 1024); 
         printf("%s\n",buffer ); 
@@ -82,7 +82,6 @@ int main(int argc, char const *argv[])
     }else{          // parent will execute this part , id > 0
 
         wait(NULL);         // waits for all child process to finish 
-        printf("Parent is now terminating, as child process is done\n");
     }
 
     return 0; 
